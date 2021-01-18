@@ -32,12 +32,12 @@ signals:
     void usernameChanged();
     void pinChanged();
 private:
-    QString clientid;
     Session *startsession;
     Data_base *client_db;
+    QString clientid;
     QString pin;
-    QString username;
     QString loginerror;
+    QString username;
 
 
 
