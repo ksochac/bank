@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RCC>
+    <qresource prefix="/">
+        <file alias="images/backspace.jpg">../app/images/backspace.jpg</file>
+        <file alias="images/enter.png">../app/images/enter.png</file>
+        <file alias="app.pro">../app/app.pro</file>
+        <file alias="images/agh.jpg">../app/images/agh.jpg</file>
+        <file alias="qml/login.qml">../app/qml/login.qml</file>
+        <file alias="qml/loginanimation.qml">../app/qml/loginanimation.qml</file>
+        <file alias="qml/main.qml">../app/qml/main.qml</file>
+        <file alias="qml/mainwindow.qml">../app/qml/mainwindow.qml</file>
+        <file alias="images/transfersign.png">../app/images/transfersign.png</file>
+        <file alias="qml/adres_form.qml">../app/qml/adres_form.qml</file>
+        <file alias="qml/first_form_nav.qml">../app/qml/first_form_nav.qml</file>
+        <file alias="qml/last_form_nav.qml">../app/qml/last_form_nav.qml</file>
+        <file alias="qml/transfer_form_nav.qml">../app/qml/transfer_form_nav.qml</file>
+        <file alias="qml/transferform.qml">../app/qml/transferform.qml</file>
+        <file alias="qml/mainform.qml">../app/qml/mainform.qml</file>
+        <file alias="qml/user_info_form.qml">../app/qml/user_info_form.qml</file>
+        <file alias="qml/calendar.qml">../app/qml/calendar.qml</file>
+    </qresource>
+</RCC>
