@@ -1,6 +1,6 @@
 #include <headers/database.h>
 
-
+ /// starts the connection to database
 Data_base::Data_base(QString hostname,QString Username,QString Password,QString dbName,QString sqlengine):
     db_hostname(hostname),
     db_Username(Username),
@@ -18,14 +18,14 @@ Data_base::Data_base(QString hostname,QString Username,QString Password,QString 
     else qDebug()<<"Connction to " + db_Name+" failed"<< Qt::endl;
 }
 
-
+// closes the database
 Data_base::~Data_base()
 {
     clientdb.close();
     qDebug()<<"closing database";
 }
 
-
+// validates the data of a user
 bool Data_base::validet_user(const QString &username, const QString &pin, QString &clientid)
 {
 
@@ -45,13 +45,14 @@ bool Data_base::validet_user(const QString &username, const QString &pin, QStrin
     return false;
 }
 
+// returns a instance of database
 Data_base &Data_base::get_instance()
 {
     static Data_base instance("localhost","root","","bank_clients","QMYSQL");
     return instance;
 }
 
-
+// sets the transfer list of a user
 QVector<QVariantMap> Data_base::set_clients_transfers(QString clientid)
 {
     QVector<QVariantMap> transfers;
@@ -76,7 +77,7 @@ QVector<QVariantMap> Data_base::set_clients_transfers(QString clientid)
     return {{{"",""}}};
 }
 
-
+// return names of columns in given table
 QVector<QString> Data_base::getcolumnnames(Data_base::dbtables table)
 {
     QVector<QString> columnkeys;
@@ -108,7 +109,7 @@ QVector<QString> Data_base::getcolumnnames(Data_base::dbtables table)
 
 
 
-
+/// return data of a user from a given table and ftom a given column
 QString Data_base::getclient_data(QString data, dbtables table,QString client_id) const
 {
     QSqlQuery myquery;
@@ -128,6 +129,7 @@ QString Data_base::getclient_data(QString data, dbtables table,QString client_id
 
 }
 
+//  return data of a user from a given table and ftom a given column, where the data matches the fromdata 
 QString Data_base::getclient_data(const QString &data, dbtables table, const QString& formname,const QString& formdata) const
 {
     QSqlQuery myquery;
@@ -147,6 +149,7 @@ QString Data_base::getclient_data(const QString &data, dbtables table, const QSt
     return QString::Null();
 }
 
+// returns all the data from a given column where th id matchees the clientid
 QStringList Data_base::getcolumn(const QString &columname, Data_base::dbtables table, const QString &clientid)
 {
     QSqlQuery myquery;
@@ -179,6 +182,7 @@ switch(table){
     return columnlist;
 }
 
+// returns all the data from a given column 
 QStringList Data_base::getcolumn(const QString &columname, Data_base::dbtables table)
 {
 
@@ -215,7 +219,7 @@ switch(table){
 
 }
 
-
+// checks id a data exist in a given table
 bool Data_base::check_if_data_exist(const QString &data,const QString& formName, Data_base::dbtables table)
 {
     QSqlQuery myquery;
@@ -245,7 +249,7 @@ bool Data_base::check_if_data_exist(const QString &data,const QString& formName,
     return false;
 
 }
-
+// checks id a data exist in a given table
 bool Data_base::check_if_data_exist(const QString &data,const QString& formName, Data_base::dbtables table,const QString & clientid)
 {
     QSqlQuery myquery;
@@ -277,7 +281,7 @@ bool Data_base::check_if_data_exist(const QString &data,const QString& formName,
 }
 
 
-
+// updates the data in the database
 bool Data_base::updatedata(const QString &formname, const QString &newdata, Data_base::dbtables table, const QString &id)
 {
     QSqlQuery myquery;
@@ -294,7 +298,7 @@ bool Data_base::updatedata(const QString &formname, const QString &newdata, Data
     return false;
 }
 
-
+// inserts a new record to the database
 bool Data_base::insert_record(QVariantMap data,dbtables table)
 {
 
