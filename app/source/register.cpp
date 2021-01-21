@@ -1,7 +1,7 @@
 #include "../headers/register.h"
 
 
-
+// sets the data model of the registerform
 Register::Register(QObject *parent):QObject(parent),
   form(FormFactory::getInstance().CreateForm("Form"))
 {
@@ -43,7 +43,7 @@ Register::Register(std::string test)
 {
 
 }
-
+//register the user
 bool Register::register_user()
 {
     if( Data_base::get_instance().insert_record(form->mform,Data_base::clients))
@@ -54,7 +54,7 @@ bool Register::register_user()
 
 }
 
-
+// validates the email of the user
 bool Register::validate_email(const QVariant & mail)
 {
     const QRegularExpression pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
@@ -67,6 +67,7 @@ bool Register::validate_email(const QVariant & mail)
     return match.hasMatch();
 }
 
+// checks if froms that need to be confirmed match
 bool Register::check_match(const QVariant & checkkey)
 {
     QString key=checkkey.toString();
@@ -81,6 +82,7 @@ bool Register::check_match(const QVariant & checkkey)
     return true;
 }
 
+// validates the pin given by the user
 bool Register::validate_pin(const QVariant &pin)
 {
     const QRegularExpression pattern("(^\\d{4}$)");
@@ -93,6 +95,7 @@ bool Register::validate_pin(const QVariant &pin)
     return match.hasMatch();
 }
 
+// validates the password given by the user
 bool Register::validate_password(const QVariant &password)
 {
     //Minimum eight characters, at least one letter, one number and one special character:
@@ -106,6 +109,7 @@ bool Register::validate_password(const QVariant &password)
     return match.hasMatch();
 }
 
+// validates the birthdate of the user
 bool Register::validate_birthdate(const QVariant &birthdate)
 {
     const QRegularExpression pattern("^((0[1-9]|[12]\\d|3[01])-(0[1-9]|1[0-2])-[12]\\d{3})$");
@@ -118,7 +122,7 @@ bool Register::validate_birthdate(const QVariant &birthdate)
     return match.hasMatch();
 }
 
-
+// validates the whole data given by the user
 bool Register::validet_input()
 {
 
