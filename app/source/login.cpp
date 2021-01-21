@@ -1,6 +1,6 @@
 #include "headers/login.h"
 
-
+// sets the first data visible to the user
 Login::Login(Session *msession,QObject *parent):
     QObject(parent),
     clientid(""),
@@ -17,7 +17,7 @@ Login::~Login()
 
 }
 
-
+//  sets the pin given by the user
 bool Login::setpin(const QString &mpin)
 {    
 
@@ -36,7 +36,7 @@ bool Login::setpin(const QString &mpin)
     }
 }
 
-
+// sets the username inputed by the user of the app
 bool Login::setusername(const QString &musername){
 
     loginerror.clear();
@@ -58,7 +58,7 @@ bool Login::setusername(const QString &musername){
     }
 }
 
-
+// logs the user into the session
 bool Login::loguserin(const QString &mpin,const QString &musername)
 {
     qDebug()<<"username:"<<musername<<" pin :"<<mpin;
