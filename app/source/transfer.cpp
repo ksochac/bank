@@ -1,5 +1,5 @@
 #include "headers/transfer.h"
-
+ // sets the data model of the form
 Transfer::Transfer(QObject *parent):QObject(parent),
     form(FormFactory::getInstance().CreateForm("Form")),
     db(&Data_base::get_instance())
@@ -9,12 +9,14 @@ Transfer::Transfer(QObject *parent):QObject(parent),
     form->mform["AccountNumber"]="0000 0000 0000 0000";
 
 }
-
+ 
+//delets the form
 Transfer::~Transfer()
 {
     delete form;
 }
 
+// sends the transfer and changes the data in the database
 bool Transfer::make_transfer()
 {
 
@@ -74,7 +76,7 @@ bool Transfer::make_transfer()
 
 }
 
-
+// validates the account number given by the user
 bool Transfer::validateAccountNumber(const QVariant & accountNumber)
 {
     if(db->check_if_data_exist(accountNumber.toString(),"AccountNumber",Data_base::clients))
@@ -87,6 +89,7 @@ bool Transfer::validateAccountNumber(const QVariant & accountNumber)
     }
 }
 
+//validates the transferamount given by the user
 bool Transfer::validateTransferAmount(const QVariant & amount)
 {
 
@@ -100,7 +103,7 @@ bool Transfer::validateTransferAmount(const QVariant & amount)
 }
 
 
-
+// validates the whole data given by the user
 bool Transfer::validet_input()
 {
     form->merrorinfo.clear();
