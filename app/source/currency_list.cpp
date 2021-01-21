@@ -10,33 +10,38 @@ setList();
 
 }
 
+//return the active currency in the currencylist
 int Currency_list::getactivecurrencyindex() const
 {
     return choosenCurrency;
 }
 
+//returns the exchange rate of the choosen currency
 double Currency_list::getcurrencyconverter()
 {
     return list.first().converter;
 }
 
+// return the active currency structure
 Currency Currency_list::getacivecurrency()
 {
     return list.first();
 }
-
+//returns the currencyname
 QString Currency_list::getcurrencyName() const
 {
     return list.first().type;
 }
 
 
-
+// makes visible only one element
 bool Currency_list::hidelist()
 {
     return displayonelement=!displayonelement;
 }
 
+
+// sets a new active currency
 void Currency_list::setactivecurrency(const int& newcurrency)
 {
     if(newcurrency!=0)
@@ -50,7 +55,7 @@ void Currency_list::setactivecurrency(const int& newcurrency)
 
 }
 
-
+// returns the size of the list
 int Currency_list::rowCount(const QModelIndex &parent)const
 {
     if(parent.isValid())return 0;
@@ -62,6 +67,7 @@ int Currency_list::rowCount(const QModelIndex &parent)const
 
 }
 
+// sets data in the list
 QVariant Currency_list::data(const QModelIndex &index, int role) const
 {
     if(!index.isValid() && list.empty())
@@ -90,6 +96,7 @@ QVariant Currency_list::data(const QModelIndex &index, int role) const
 
 }
 
+// allows to call the data from qml
 QHash<int, QByteArray> Currency_list::roleNames() const
 {
     QHash<int,QByteArray> roles;
@@ -101,6 +108,7 @@ QHash<int, QByteArray> Currency_list::roleNames() const
 
 }
 
+// swap the 2 given rows
 void Currency_list::swapRows(const int &sourceindex, const int &destindex)
 {
     list.swapItemsAt(sourceindex,destindex);
@@ -108,7 +116,7 @@ void Currency_list::swapRows(const int &sourceindex, const int &destindex)
 }
 
 
-
+// sets a new list
 void Currency_list::setList()
 {
     QString clientid = Session::getclientId();
@@ -130,6 +138,7 @@ void Currency_list::setList()
 
 }
 
+// sets another list
 void Currency_list::setallcurrency()
 {
         list.clear();
