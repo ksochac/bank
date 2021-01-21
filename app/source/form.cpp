@@ -1,4 +1,6 @@
 #include "headers/form.h"
+
+// handle the exposing of the data to the user
 void Form::setForm(const QVariantMap &formcell,Action_on_cell action)
 {
 
@@ -70,6 +72,7 @@ void Form::setForm(const QVariantMap &formcell,Action_on_cell action)
     }
 }
 
+// updates the data visible to the useer
 void Form::update()
 {
     if(lastcell!=NULL)
@@ -82,7 +85,7 @@ void Form::update()
 
 
 
-
+// sets the model of a form
  void Form::setmodel(Data_base::dbtables tablename)
  {
      QVector<QString> keys;
@@ -98,12 +101,13 @@ void Form::update()
  }
 
 
+// returns a fromcell data
 QVariant Form::get_form_cell(QString key)
 {
     return mform[key];
 }
 
-
+// returns the last error
 QVariant Form::get_error_info()
 {
     if(merrorinfo.empty())
@@ -111,7 +115,7 @@ QVariant Form::get_error_info()
     else return merrorinfo.last();
 }
 
-
+// validates the input of the user
 void Form::validet_input()
 {
 
