@@ -1,5 +1,6 @@
 #include "headers/currencyaccountform.h"
 
+// sets the datamodel of the form
 CurrencyAccountForm::CurrencyAccountForm(QObject *parent) : QObject(parent),
     form(FormFactory::getInstance().CreateForm("Form")),
     db(&Data_base::get_instance())
@@ -11,16 +12,18 @@ CurrencyAccountForm::CurrencyAccountForm(QObject *parent) : QObject(parent),
     form->mform["AccountNumber"]= "PLN " + db->getclient_data("AccountNumber",Data_base::clients,form->mform["Id"].toString());
 }
 
+//validates data that has been inputet
 bool CurrencyAccountForm::validateInput()
 {
     return (!alreadyexist() && currencyChoosen());
 }
-
+// adds a currency account to the database
 void CurrencyAccountForm::addcurencyaccount()
 {
     db->insert_record(form->mform,Data_base::currency_accounts);
 }
 
+// check if a currency has been choosen
 bool CurrencyAccountForm::currencyChoosen()
 {
     if(form->mform["Currency"]=="")
@@ -32,6 +35,7 @@ bool CurrencyAccountForm::currencyChoosen()
     return true;
 }
 
+//check if a currency already exist
 bool CurrencyAccountForm::alreadyexist()
 {
     if(db->check_if_data_exist(form->mform["AccountNumber"].toString(),"AccountNumber",Data_base::currency_accounts,form->mform["Id"].toString() ) )
