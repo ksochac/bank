@@ -2,7 +2,7 @@
 
 
 
-
+// return the size of the transfer list
 int Transfer_list::rowCount(const QModelIndex &parent) const
 {
     // For list models only the root node (an invalid parent) should return the list's size. For all
@@ -14,6 +14,8 @@ int Transfer_list::rowCount(const QModelIndex &parent) const
     else return mclient_transfer_data.size();
 }
 
+
+// sets the data of the transfer list
 QVariant Transfer_list::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || mclient_transfer_data.empty() ){
@@ -42,6 +44,7 @@ QVariant Transfer_list::data(const QModelIndex &index, int role) const
 
 }
 
+// inserts new transfer to the list
 bool Transfer_list::insertRows(int row, int count, const QModelIndex &parent)
 {
     beginInsertRows(parent, row, row + count - 1);
@@ -50,7 +53,7 @@ bool Transfer_list::insertRows(int row, int count, const QModelIndex &parent)
     endInsertRows();
 }
 
-
+// makes it available to get from qml
 QHash<int,QByteArray> Transfer_list::roleNames() const{
     QHash<int,QByteArray> roles;
     roles[transfername]="transfername";
